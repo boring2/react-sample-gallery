@@ -1,12 +1,10 @@
 require('normalize.css/normalize.css');
-require('styles/App.css');
+require('styles/App.scss');
 
 import React from 'react';
 
 let yeomanImage = require('../images/yeoman.png');
-var style = {
-  display: 'none'
-}
+
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);

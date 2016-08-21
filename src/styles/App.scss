@@ -9,7 +9,11 @@ body {
   border-radius: 4px;
   background: #fff;
   display: block;
+  border-radius: 1px;
+  border-shadow: 1px;
+  display: flex;
 }
+
 
 .index .notice {
   margin: 20px auto;

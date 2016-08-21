@@ -1,6 +1,8 @@
 'use strict';
 let path = require('path');
 let defaultSettings = require('./defaults');
+const precss       = require('precss');
+const autoprefixer = require('autoprefixer');
 
 // Additional npm or bower modules to include in builds
 // Add all foreign plugins you may need into this array
@@ -38,5 +40,8 @@ module.exports = {
       config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV
     }
   },
-  module: {}
+  module: {},
+  postcss: function () {
+    return [precss, autoprefixer];
+  }
 };

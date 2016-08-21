@@ -26,7 +26,7 @@ function getDefaultModules() {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        loader: 'style-loader!css-loader!postcss-loader'
       },
       {
         test: /\.sass/,
@@ -34,7 +34,7 @@ function getDefaultModules() {
       },
       {
         test: /\.scss/,
-        loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
+        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
       },
       {
         test: /\.less/,
@@ -52,7 +52,10 @@ function getDefaultModules() {
         test: /\.(mp4|ogg|svg)$/,
         loader: 'file-loader'
       }
-    ]
+    ],
+    postcss: function () {
+      return [precss, autoprefixer];
+    }
   };
 }
 
