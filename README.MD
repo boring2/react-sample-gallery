@@ -17,6 +17,16 @@ npm install node-sass --save-dev
 npm install precss --save-dev
 npm install autoprefixer --save-dev
 
+# 配置autoprefixer,在目录cfg下的base.js文件的module{}后加入如下代码
+```javascript
+...
+module :{},
+postcss: function () {
+  return [precss, autoprefixer];
+  }
+```
+
+
 
 
 
