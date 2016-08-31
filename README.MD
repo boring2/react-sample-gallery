@@ -13,11 +13,19 @@ npm install sass-loader --save-dev
 # 装完后保存Main.js, 又提示node-sass不存在error
 npm install node-sass --save-dev
 
-# 用postcss-loader设置autoprefixer,查看文档发现.依赖precss和autoprefixer.于是安装;
+# 用postcss-loader设置autoprefixer, 查看文档发现.依赖precss和autoprefixer.于是安装;
 npm install precss --save-dev
 npm install autoprefixer --save-dev
 
-# 配置autoprefixer,在目录cfg下的base.js文件的module{}后加入如下代码
+# 配置postcss-loader(autoprefixer)
+1.目录cfg下的defaults.js中修改
+```javascript
+...
+test: /\.scss/,
+loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
+```
+
+2.目录cfg的base.js文件的module{}后加入如下代码, autoprefixer才能工作
 ```javascript
 ...
 module :{},

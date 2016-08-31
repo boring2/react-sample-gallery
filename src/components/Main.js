@@ -3,26 +3,39 @@ require('styles/App.scss');
 
 import React from 'react';
 
-let yeomanImage = require('../images/yeoman.png');
+//获取图片相关的数据
+let imageDatas = require('../data/imageDatas.json');
+
+//增加url信息.
+imageDatas = (function genImageURL (imageDatasArr) {
+  imageDatasArr.forEach(function (imageData) {
+    imageData.imageURL = require('../images/' + imageData.fileName);
+  });
+  return imageDatasArr;
+})(imageDatas);
+
 
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: 'none'
+      display: 'block'
     };
+    // this.clickHandler = this.clickHandler.
   }
-  clickHandler () {
+  clickHandler() {
     this.setState({
-      display: "block"
+      display: 'none'
     });
   }
   render() {
     return (
-      <div className="index">
-        <img src={yeomanImage} alt="Yeoman Generator" onClick={this.clickHandler.bind(this)}/>
-        <div className="notice" style={this.state}>Please edit <code>src/components/Main.js</code> to get started!</div>
-      </div>
+      <section className="stage">
+        <section className="img-sec">
+        </section>
+        <nav className="controller-nav">
+        </nav>
+      </section>
     );
   }
 }
