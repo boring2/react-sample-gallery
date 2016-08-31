@@ -34,6 +34,24 @@ postcss: function () {
   }
 ```
 
+# 用forEach改写了mater老师的imageDatas
+```javascript
+imageDatas = (function genImageURL (imageDatasArr) {
+  imageDatasArr.forEach(function (imageData) {
+    imageData.imageURL = require('../images/' + imageData.fileName);
+  });
+  return imageDatasArr;
+})(imageDatas);
+```
+# 做到3-2时 有一个警告信息 
+Warning: Each child in an array or iterator should have a unique “key” prop.
+stackoverflow后发现是react为了渲染性能需要给每个迭代的孩子加唯一的key值.于是我在imageDatas.json中加入id字段.相应代码改成如下;
+```javascript
+imageDatas.forEach(function(value) {
+  imgFigures.push(<ImgFigure key={value.id} data={value} />);
+  });
+```
+
 
 
 
