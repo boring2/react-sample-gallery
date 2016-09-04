@@ -25,7 +25,7 @@ function getRangeRandom(low, high) {
 }
 
 function get30DegRandom() {
-  return (Math.random() > 0.5) ? '' : '-' + Math.ceil(Math.random() * 30);
+  return ((Math.random() > 0.5) ? '' : '-') + Math.ceil(Math.random() * 30);
 }
 
 class ImgFigure extends React.Component {
@@ -125,6 +125,7 @@ class GalleryByReactApp extends React.Component {
    * @return {[type]}             [description]
    */
   rearrange (centerIndex) {
+
     const imgsArrangeArr = this.state.imgsArrangeArr;
     const Constant = GalleryByReactApp.defaultProps.Constant;
     const centerPos = Constant.centerPos;
@@ -137,11 +138,11 @@ class GalleryByReactApp extends React.Component {
     const vPosRangeTopY = vPosRange.topY;
     let imgsArrangeTopArr = [];
     //取一个或者不取放在上方
-    const topImgNum = Math.ceil(Math.random() * 2);
+    const topImgNum = Math.random() > 0.5 ? 0 : 1;
     let topImgSpliceIndex = 0;
 
     const imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex, 1);
-    
+    1
     //首先居中centerIndex图片,居中的centerIndex图片不需要旋转
     imgsArrangeCenterArr[0] = {
       pos: centerPos,
@@ -151,6 +152,10 @@ class GalleryByReactApp extends React.Component {
 
     //取出要布局上侧的图片状态信息
     topImgSpliceIndex = Math.ceil(Math.random() * (imgsArrangeArr.length - topImgNum));
+    //如果生成的index和centerIndex一样,那重新生成.
+    while(topImgSpliceIndex === centerIndex) {
+      topImgSpliceIndex = Math.ceil(Math.random() * (imgsArrangeArr.length - topImgNum));
+    }
     imgsArrangeTopArr  = imgsArrangeArr.splice(topImgSpliceIndex, topImgNum);
 
     //布局位于上侧的图片
@@ -186,12 +191,11 @@ class GalleryByReactApp extends React.Component {
     }
 
     //合并回来
-    if (imgsArrangeTopArr.length) {
+    if (imgsArrangeTopArr.length > 0) {
       imgsArrangeArr.splice(topImgSpliceIndex, 0, imgsArrangeTopArr[0]);
     }
 
     imgsArrangeArr.splice(centerIndex, 0, imgsArrangeCenterArr[0]);
-
     this.setState({
       imgsArrangeArr
     })

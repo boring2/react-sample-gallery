@@ -90,7 +90,35 @@ warning.js?8a56:36Warning: Unsupported style property -mos-transfrom. Did you me
   }.bind(this));
 ```
 
-### 老师漏讲了一节图片翻转的课程.可根据github上的源码分析.
+### 老师漏讲了一节图片翻转的课程.可根据github上的源码分析.主要是加了img-back的css.
+
+### bug修复
+1.centerIndex 和 topImgSpliceIndex 可能会随机生成一样的,所以可能会导致中心图片有两张
+```javascript
+//如果一样就重新生成.
+while(topImgSpliceIndex === centerIndex) {
+  topImgSpliceIndex = Math.ceil(Math.random() * (imgsArrangeArr.length - topImgNum));
+}
+```
+
+2.var topImgNum = Math.ceil(Math.random() * 2)产生的随机数可能是1 或 2, 但是合并回去的时候只合并了一个imgsArrangeTopArr[0]
+```javascript
+imgsArrangeArr.splice(topImgSpliceIndex, 0, imgsArrangeTopArr[0]);
+```
+导致元素缺失一个.
+解决办法:
+要么在合并时用
+```javascript
+imgsArrangeArr.splice(topImgSpliceIndex, 0, imgsArrangeTopArr);
+```
+
+要么在生成时用
+```javascript
+const topImgNum = Math.random() > 0.5 ? 0 : 1;
+```
+
+
+
 
 
 
