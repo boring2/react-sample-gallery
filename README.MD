@@ -45,13 +45,40 @@ imageDatas = (function genImageURL (imageDatasArr) {
 ```
 # 做到3-2时 有一个警告信息 
 Warning: Each child in an array or iterator should have a unique “key” prop.
-stackoverflow后发现是react为了渲染性能需要给每个迭代的孩子加唯一的key值.于是我在imageDatas.json中加入id字段.相应代码改成如下;
+stackoverflow后发现是react为了渲染性能需要给每个迭代的孩子加唯一的key值.于是我在forEach中加入index.相应代码改成如下;
 ```javascript
-imageDatas.forEach(function(value) {
-  imgFigures.push(<ImgFigure key={value.id} data={value} />);
+imageDatas.forEach(function(value, index) {
+  imgFigures.push(<ImgFigure key={index} data={value} />);
   });
 ```
-
+# 做到3-4时报错
+1.Uncaught TypeError: _react2.default.findDOMNode is not a function
+由于react版本问题,已经迁移到react-dom包中,所有改用
+```javascript
+import ReactDOM from 'react-dom'
+const stageDOM = ReactDOM.findDOMNode(this.refs.stage);
+const imgFigureDOM = ReactDOM.findDOMNode(this.refs.imgFigures0);
+```
+2.把Constant部分放到下面代码中, 因为Constant应该不属于实例属性.没有必要定义在类中.
+```javascript
+GalleryByReactApp.defaultProps = {
+ Constant: {
+    centerPos: {
+      left: 0,
+      right: 0
+    },
+    hPosRange: {    //水平方向的取值范围
+      leftSecX: [0, 0],
+      rightSecX: [0, 0],
+      y: [0, 0]
+    },
+    vPosRange: {    //垂直方向的取值范围
+      x: [0, 0],
+      topY: [0, 0]
+    }
+  }
+};
+```
 
 
 
