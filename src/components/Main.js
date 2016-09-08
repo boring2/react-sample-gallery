@@ -82,7 +82,24 @@ class ImgFigure extends React.Component {
       </figure>
     )
   }
+}
 
+//控制组件
+class ControllerUnit extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  render() {
+    return (
+      <span className="controller-unit" onClick={this.handleClick.bind(this)}></span>
+    );
+  }
 }
 
 class GalleryByReactApp extends React.Component {
@@ -276,6 +293,8 @@ class GalleryByReactApp extends React.Component {
         }
       }
       imgFigures.push(<ImgFigure key={index} data={value} ref={'imgFigure' + index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)} />);
+      controllerUnits.push(<ControllerUnit key={index} />)
+      // controllerUnits.push(<ControllerUnit key={index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>)
     }.bind(this));
 
     return (
@@ -290,6 +309,8 @@ class GalleryByReactApp extends React.Component {
     );
   }
 }
+
+
 
 GalleryByReactApp.defaultProps = {
  Constant: {
