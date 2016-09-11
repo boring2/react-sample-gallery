@@ -117,6 +117,8 @@ imgsArrangeArr.splice(topImgSpliceIndex, 0, imgsArrangeTopArr);
 const topImgNum = Math.random() > 0.5 ? 0 : 1;
 ```
 
+### grunt serve:dist 用npm run serve:dist代替
+
 
 
 
