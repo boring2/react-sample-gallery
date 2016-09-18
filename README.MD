@@ -122,14 +122,14 @@ const topImgNum = Math.random() > 0.5 ? 0 : 1;
 ### 将代码推到gh-pages的方法
 
 #### 因为我没装sub-tree,所以用自己的方法推到gh-pages中
-+ 1. cd dist
-+ 2. git init
-+ 3. git checkout --orphan gh-pages
-+ 4. git add .
-+ 5. git commit -m 'create gh-pages'
-+ 6. git remote add origin git@github.com:username/project.git
-+ 7. git push origin gh-pages
-+ 8. 在github中代码目录的settings项里把GitHub Pages设置为gh-pages
+1. cd dist
+2. git init
+3. git checkout --orphan gh-pages
+4. git add .
+5. git commit -m 'create gh-pages'
+6. git remote add origin git@github.com:username/project.git
+7. git push origin gh-pages
+8. 在github中代码目录的settings项里把GitHub Pages设置为gh-pages
 
 ### ps: 上传后发现的有资源找不到(404. /assets/app.js)之类的提示可以可以直接修改index.html文件中的src(把'/assets/app.js'改为'assets/app.js').
 
