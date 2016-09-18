@@ -102,7 +102,7 @@ class ControllerUnit extends React.Component {
   }
 
   render() {
-    let controllerUnitClassName = "controller-unit";
+    let controllerUnitClassName = 'controller-unit';
 
     //如果对应的是居中图片, 显示控制按钮的翻转态
     if (this.props.arrange.isCenter) {
@@ -134,7 +134,7 @@ class GalleryByReactApp extends React.Component {
         }*/
       ]
     }
-   
+
   }
 
   /**
@@ -291,7 +291,7 @@ class GalleryByReactApp extends React.Component {
 
   }
 
-  
+
 
   render() {
     let controllerUnits = [];
@@ -309,7 +309,7 @@ class GalleryByReactApp extends React.Component {
         }
       }
       imgFigures.push(<ImgFigure key={index} data={value} ref={'imgFigure' + index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)} />);
-    
+
       controllerUnits.push(<ControllerUnit key={index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>)
     }.bind(this));
 
